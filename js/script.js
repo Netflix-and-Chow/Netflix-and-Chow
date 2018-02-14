@@ -17,7 +17,7 @@ netflixChow.displayData = () => {
 }
 
 //events function
-netflixChow.events = () = {
+netflixChow.events = () => {
 
 }
 
@@ -30,3 +30,19 @@ netflixChow.init = () => {
 $(function() {
 
 });
+
+
+//YUMMLY API:
+// get ingredients
+// get image
+// get link to page
+// generate 5 recipies
+
+
+horror - beef, steak
+
+comedy - 
+
+
+
+
