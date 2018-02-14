@@ -69,8 +69,25 @@ $(function() {
 });
 
 
+
+//YUMMLY API:
+// get ingredients
+// get image
+// get link to page
+// generate 5 recipies
+
+
+horror - beef, steak
+
+comedy - 
+
+
+
+
+
 //Get data notes:
 //images 
 //Genres: Comedy, Sci-Fi, Horror, Romance, Western, Action, Animation
 //Random 5 movies with genre selection
 //Figure out biography, ratings, reviews
+
