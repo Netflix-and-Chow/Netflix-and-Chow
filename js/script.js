@@ -39,6 +39,7 @@ netflixChow.sortMovieData = (movieData) => {
     }
 
     netflixChow.displayMovies(netflixChow.movieGenre);
+    // console.log(netflixChow.movieGenre);
 
 }
 
@@ -50,7 +51,7 @@ netflixChow.movieSelection = () => {
     $("form").on("submit", function(e) {
         e.preventDefault();
         const userInputMovie = $("input[type=radio]:checked").val();
-        console.log(userInputMovie);
+        // console.log(userInputMovie);
 
         let genreId;
 
@@ -77,7 +78,7 @@ netflixChow.movieSelection = () => {
         }
         // console.log(genreId);
 
-        //passing genreId to the getMovieData function to retrieve movies
+        //passing genreId to the getMovieData function to retrieve movies and movieFood function for recipe retrieval
         netflixChow.getMovieData(genreId);
         netflixChow.movieFood(genreId);
 
@@ -95,69 +96,51 @@ netflixChow.movieSelection = () => {
 
 //display sorted data
 netflixChow.displayMovies = (movieData) => {
-    console.log(movieData);
+    // console.log(movieData);
 
     for(let i = 0; i < movieData.length; i = i + 1) {
-        const movieTitle = $(".results").append(`<h2>${movieData[i].original_title}</h2>`);
-        const movieDescription = $(".results").append(`<p>${movieData[i].overview}</p>`);
-        const movieImage = $(".results").append(`<img src="https://image.tmdb.org/t/p/w500${movieData[i].poster_path}">`);
+        const movieTitle = $(".movie-results").append(`<h2>${movieData[i].original_title}</h2>`);
+        const movieDescription = $(".movie-results").append(`<p>${movieData[i].overview}</p>`);
+        const movieImage = $(".movie-results").append(`<img src="https://image.tmdb.org/t/p/w500${movieData[i].poster_path}">`);
     }
 
 }
 
-// //events function
-// netflixChow.events = () => {
-
-// }
-
-
-//Get data notes:
-//images 
-//Genres: Comedy, Sci-Fi, Horror, Romance, Western, Action, Animation
-//Random 5 movies with genre selection
-//Figure out biography, ratings, reviews
-
-
-
-//YUMMLY API:
-// get ingredients
-// get image
-// get link to page
-// generate 5 recipies
-
 netflixChow.movieFood = (genreID) => {
+    let assignedIngredient;
+    
     if (genreID === 16) {
-        const assignedIngredient = 'chicken fingers';
+        assignedIngredient = 'chicken fingers';
     }
 
     else if (genreID === 18) {
-        const assignedIngredient = 'soup';
+        assignedIngredient = 'soup';
     }
 
     else if (genreID === 35) {
-        const assignedIngredient = 'popcorn';
+        assignedIngredient = 'popcorn';
     }
 
     else if (genreID === 27) {
-        const assignedIngredient = 'garlic';
+        assignedIngredient = 'garlic';
     }
 
     else if (genreID === 10749) {
-        const assignedIngredient = 'dessert';
+        assignedIngredient = 'dessert';
     }
 
     else if (genreID === 878) {
-        const assignedIngredient = 'drinks';
+        assignedIngredient = 'drinks';
     }
 
     else {
-        const assignedIngredient = 'bbq';
+        assignedIngredient = 'bbq';
     }
 
     netflixChow.getId(assignedIngredient);
+    // console.log(assignedIngredient);
+
 }
-
-
 
 netflixChow.getId= (ingredient) => {
     $.ajax({
@@ -225,10 +208,6 @@ netflixChow.getRec = (recId) => {
     });
 }
 
-
-netflixChow.displayRecipes = (recipeInfo) => {
-    // console.log(recipeInfo);
-
 netflixChow.getRecipes = (recipeInfo) => {
     // console.log(recipeInfo);
     
@@ -255,24 +234,20 @@ netflixChow.getRecipes = (recipeInfo) => {
 netflixChow.displayRecipes = (recipeName, recipeUrl, recipeImage) => {
     // console.log(recipeName[0], recipeUrl[0], recipeImage[0])
 
-    $('.movie-choice').on('click', function(){
+    // $('.form').on('submit', function(){
         for (i=0; i<5; i++){
-        $('.recipe-gallery').append(`<li>${recipeName[i]},</li>`);
-        $('.recipe-gallery').append(`<a href="${recipeUrl[i]}"></a>`);
-        $('.recipe-gallery').append(`<img> ${recipeImage[i]}`);
+        $('.recipe-gallery').append(`<img src="${recipeImage[i]}">`);
+        $('.recipe-gallery').append(`<li>${recipeName[i]}</li>`);
+        $('.recipe-gallery').append(`<a href="${recipeUrl[i]}"> Recipe Link</a>`);
         }
-    });
+    // });
 
 }
 
-
+//<a href=""></a>
 
 //initialization function
 netflixChow.init = () => {
-
-    // netflixChow.getMovieData();
-    // netflixChow.getRec();
-    // netflixChow.getId(`garlic`);
     netflixChow.movieSelection();
 }
 
@@ -281,4 +256,3 @@ netflixChow.init = () => {
 $(function() {
     netflixChow.init();
 });
-
