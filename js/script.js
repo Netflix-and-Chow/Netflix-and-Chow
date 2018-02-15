@@ -143,7 +143,16 @@ netflixChow.init = () => {
     netflixChow.getId(`garlic`);
 }
 
+
+
+function () {
+    const ids = res.matches.map((value) => {
+        return value.id;
+    })
+}
+
 //document ready function
 $(function() {
     netflixChow.init();
 });
+
