@@ -91,3 +91,9 @@ comedy -
 //Random 5 movies with genre selection
 //Figure out biography, ratings, reviews
 
+
+function () {
+    const ids = res.matches.map((value) => {
+        return value.id;
+    })
+}
