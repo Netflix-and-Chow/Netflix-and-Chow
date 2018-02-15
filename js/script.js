@@ -106,6 +106,7 @@ netflixChow.displayMovies = (movieData) => {
 
 }
 
+
 netflixChow.movieFood = (genreID) => {
     let assignedIngredient;
     
@@ -192,8 +193,6 @@ netflixChow.getId= (ingredient) => {
     })
 };
 
-//selcted ids will be passed to getRecepie function
-// retrive image and url of each id
 
 netflixChow.getRec = (recId) => {
     return $.ajax({
@@ -207,6 +206,7 @@ netflixChow.getRec = (recId) => {
         }
     });
 }
+
 
 netflixChow.getRecipes = (recipeInfo) => {
     // console.log(recipeInfo);
@@ -227,9 +227,9 @@ netflixChow.getRecipes = (recipeInfo) => {
     });
     // console.log(recipeImage)
    
-    netflixChow.displayRecipes(recipeName, recipeUrl, recipeImage);
+    netflixChow.displayRecipes(recipeName, recipeUrl, recipeImage); 
+    }
 
-}
 
 netflixChow.displayRecipes = (recipeName, recipeUrl, recipeImage) => {
     // console.log(recipeName[0], recipeUrl[0], recipeImage[0])
@@ -239,6 +239,7 @@ netflixChow.displayRecipes = (recipeName, recipeUrl, recipeImage) => {
         $('.recipe-gallery').append(`<img src="${recipeImage[i]}">`);
         $('.recipe-gallery').append(`<li>${recipeName[i]}</li>`);
         $('.recipe-gallery').append(`<a href="${recipeUrl[i]}"> Recipe Link</a>`);
+
         }
     // });
 
