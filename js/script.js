@@ -73,6 +73,39 @@ const netflixChow = {};
 // get link to page
 // generate 5 recipies
 
+netflixChow.movieFood = (genreID) => {
+    if (genreID === 16) {
+        const assignedIngredient = 'chicken fingers';
+    }
+
+    else if (genreID === 18) {
+        const assignedIngredient = 'soup';
+    }
+
+    else if (genreID === 35) {
+        const assignedIngredient = 'popcorn';
+    }
+
+    else if (genreID === 27) {
+        const assignedIngredient = 'garlic';
+    }
+
+    else if (genreID === 10749) {
+        const assignedIngredient = 'dessert';
+    }
+
+    else if (genreID === 878) {
+        const assignedIngredient = 'drinks';
+    }
+
+    else {
+        const assignedIngredient = 'bbq';
+    }
+
+    netflixChow.getId(assignedIngredient);
+}
+
+
 
 netflixChow.getId= (ingredient) => {
     $.ajax({
@@ -88,7 +121,7 @@ netflixChow.getId= (ingredient) => {
         }
     }).then(function (res) {
         netflixChow.ingredientMatches = res.matches;
-        console.log(netflixChow.ingredientMatches);
+        // console.log(netflixChow.ingredientMatches);
         
         // console.log(recRandomId);
         // console.log(netflixChow.ingredientMatches[recRandomId]);
@@ -102,24 +135,24 @@ netflixChow.getId= (ingredient) => {
             getRandomNumbers.push(recRandomId);
         }
 
-        console.log(getRandomNumbers);
+        // console.log(getRandomNumbers);
 
         for(let i =0; i < getRandomNumbers.length; i = i + 1) {
             getRandomRecipes.push(netflixChow.ingredientMatches[getRandomNumbers[i]]);
         }
 
-        console.log(getRandomRecipes);
+        // console.log(getRandomRecipes);
         let getRandomId = getRandomRecipes.map((value) => value.id);
-        console.log(getRandomId);
+        // console.log(getRandomId);
 
         getRandomId = getRandomId.map(netflixChow.getRec);
-        console.log(getRandomId);
+        // console.log(getRandomId);
         
         $.when(...getRandomId)
             .then((...recipeDetails) => {
                 recipeDetails = recipeDetails.map((value) => value[0]);
                 // console.log(recipeDetails);
-                netflixChow.displayRecipes(recipeDetails);
+                netflixChow.getRecipes(recipeDetails);
             })
     })
 };
@@ -136,31 +169,53 @@ netflixChow.getRec = (recId) => {
             _app_id: "3a0b16d3",
             _app_key: 'faa48eb9d0f5e7c9d642a58e0147bc85',
             format: 'json'
-            
         }
     });
 }
 
-netflixChow.displayRecipes = (recipeInfo) => {
-    console.log(recipeInfo);
+netflixChow.getRecipes = (recipeInfo) => {
+    // console.log(recipeInfo);
+    
+    let recipeName = recipeInfo.map((value) => {
+        return value.name;
+    });
+    // console.log(recipeName);
+
+    let recipeUrl = recipeInfo.map((value) => {
+        return value.source.sourceRecipeUrl;
+    });
+    // console.log(recipeUrl);
+    
+    let recipeImage = recipeInfo.map((value) => {
+        // console.log(value);
+        return value.images[0].hostedLargeUrl;
+    });
+    // console.log(recipeImage)
+   
+    netflixChow.displayRecipes(recipeName, recipeUrl, recipeImage);
+
+}
+
+netflixChow.displayRecipes = (recipeName, recipeUrl, recipeImage) => {
+    // console.log(recipeName[0], recipeUrl[0], recipeImage[0])
+
+    $('.movie-choice').on('click', function(){
+        for (i=0; i<5; i++){
+        $('.recipe-gallery').append(`<li>${recipeName[i]},</li>`);
+        $('.recipe-gallery').append(`<a href="${recipeUrl[i]}"></a>`);
+        $('.recipe-gallery').append(`<img> ${recipeImage[i]}`);
+        }
+    });
 }
 
 
 
 //initialization function
 netflixChow.init = () => {
-    // netflixChow.getMovieData();
-    netflixChow.getRec();
-    netflixChow.getId(`garlic`);
+   
+   
 }
 
-
-
-// function () {
-//     const ids = res.matches.map((value) => {
-//         return value.id;
-//     })
-// }
 
 //document ready function
 $(function() {
