@@ -87,13 +87,14 @@ netflixChow.getId= (ingredient) => {
 
         }
     }).then(function (res) {
-        console.log(res.matches);
         netflixChow.ingredientMatches = res.matches;
+        console.log(netflixChow.ingredientMatches);
         
         // console.log(recRandomId);
         // console.log(netflixChow.ingredientMatches[recRandomId]);
         
-        const getRandomNumbers = [];
+        let getRandomNumbers = [];
+        let getRandomRecipes = [];
         
         for (i=0; i<5; i++) {
             let recRandomId = Math.floor(Math.random() * netflixChow.ingredientMatches.length);
@@ -101,17 +102,33 @@ netflixChow.getId= (ingredient) => {
             getRandomNumbers.push(recRandomId);
         }
 
+        console.log(getRandomNumbers);
 
+        for(let i =0; i < getRandomNumbers.length; i = i + 1) {
+            getRandomRecipes.push(netflixChow.ingredientMatches[getRandomNumbers[i]]);
+        }
+
+        console.log(getRandomRecipes);
+        let getRandomId = getRandomRecipes.map((value) => value.id);
+        console.log(getRandomId);
+
+        getRandomId = getRandomId.map(netflixChow.getRec);
+        console.log(getRandomId);
+        
+        $.when(...getRandomId)
+            .then((...recipeDetails) => {
+                recipeDetails = recipeDetails.map((value) => value[0]);
+                // console.log(recipeDetails);
+                netflixChow.displayRecipes(recipeDetails);
+            })
     })
-}
-
-
+};
 
 //selcted ids will be passed to getRecepie function
 // retrive image and url of each id
 
 netflixChow.getRec = (recId) => {
-    $.ajax({
+    return $.ajax({
         url: `http://api.yummly.com/v1/api/recipe/${recId}`,
         dataType: 'json',
         method: 'GET',
@@ -121,14 +138,12 @@ netflixChow.getRec = (recId) => {
             format: 'json'
             
         }
-    }).then(function (res) {
-        
-        
-    })
+    });
 }
 
-
-
+netflixChow.displayRecipes = (recipeInfo) => {
+    console.log(recipeInfo);
+}
 
 
 
