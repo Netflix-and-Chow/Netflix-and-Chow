@@ -29,7 +29,7 @@ const netflixChow = {};
 //     });
 // }
 
-// // netflixChow.getMovieData();
+// netflixChow.getMovieData();
 
 // //sorting data accoding to genre type and filtering them into separate arrays
 // netflixChow.sortData = (movieData) => {
@@ -67,8 +67,6 @@ const netflixChow = {};
 
 
 
-
-
 //YUMMLY API:
 // get ingredients
 // get image
@@ -76,9 +74,6 @@ const netflixChow = {};
 // generate 5 recipies
 
 
-
-
-//retrieve the ids from the searcable ingreedient
 netflixChow.getId= (ingredient) => {
     $.ajax({
         url: 'http://api.yummly.com/v1/api/recipes',
@@ -103,7 +98,7 @@ netflixChow.getId= (ingredient) => {
         
         for (i=0; i<5; i++) {
             let recRandomId = Math.floor(Math.random() * netflixChow.ingredientMatches.length);
-
+            
             getRandomNumbers.push(recRandomId);
         }
 
@@ -128,10 +123,6 @@ netflixChow.getId= (ingredient) => {
             })
     })
 };
-
-
-//create a new array of results
-// pick random selction of ids from this array
 
 //selcted ids will be passed to getRecepie function
 // retrive image and url of each id
@@ -164,12 +155,15 @@ netflixChow.init = () => {
 }
 
 
+
 // function () {
 //     const ids = res.matches.map((value) => {
 //         return value.id;
 //     })
 // }
+
 //document ready function
 $(function() {
     netflixChow.init();
 });
+
