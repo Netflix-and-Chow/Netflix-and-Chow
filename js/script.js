@@ -1,4 +1,4 @@
-//namespace variables
+//namespace variables                             
 const netflixChow = {};
 
 netflixChow.movieGenre = [];
@@ -27,31 +27,38 @@ netflixChow.getMovieData = (id) => {
 }
 
 netflixChow.sortMovieData = (movieData) => {
-    // console.log(movieData);    
+  
+    //infinite loop is built on purpose - we are pushing random numbers to any array only if they are unique, break at array length of 5
+    for (let i = 0; i < 5; i + 1) {
 
-    for (let i = 0; i < 5; i = i + 1) {
-        let randomMovieIndex = Math.floor(Math.random() * 5);
-        netflixChow.randomMovieArray.push(randomMovieIndex);
+        let randomMovieIndex = Math.floor(Math.random() * movieData.length);
+        
+        if(netflixChow.randomMovieArray.includes(randomMovieIndex)) {
+            // console.log(netflixChow.randomMovieArray);
+        }
+        else {            
+            netflixChow.randomMovieArray.push(randomMovieIndex);
+        }
+        if(netflixChow.randomMovieArray.length === 5) {
+            break;
+        }
     }
 
+    //pushes movies into an array based on an array of random index numbers
     for (let i = 0; i < netflixChow.randomMovieArray.length; i = i + 1) {
         netflixChow.movieGenre.push(movieData[netflixChow.randomMovieArray[i]]);
     }
 
     netflixChow.displayMovies(netflixChow.movieGenre);
     // console.log(netflixChow.movieGenre);
-
 }
 
-// netflixChow.getMovieData();
-// netflixChow.randomizer();
 
 netflixChow.movieSelection = () => {
-    // console.log(randomMovieIndex);
+    
     $("form").on("submit", function(e) {
         e.preventDefault();
         const userInputMovie = $("input[type=radio]:checked").val();
-        // console.log(userInputMovie);
 
         let genreId;
 
@@ -76,7 +83,6 @@ netflixChow.movieSelection = () => {
         else if(userInputMovie === "Western") {
             genreId = 37;
         }
-        // console.log(genreId);
 
         //passing genreId to the getMovieData function to retrieve movies and movieFood function for recipe retrieval
         netflixChow.getMovieData(genreId);
@@ -88,20 +94,28 @@ netflixChow.movieSelection = () => {
         netflixChow.randomMovieArray = [];
 
         //clears the previous results appended to the body
-        $(".results").empty();
+        $(".movie-results").empty();
+        $(".recipe-gallery").empty();
     });
 };
 
-// netflixChow.movieSelection();
 
 //display sorted data
 netflixChow.displayMovies = (movieData) => {
     // console.log(movieData);
 
     for(let i = 0; i < movieData.length; i = i + 1) {
-        const movieTitle = $(".movie-results").append(`<h2>${movieData[i].original_title}</h2>`);
-        const movieDescription = $(".movie-results").append(`<p>${movieData[i].overview}</p>`);
-        const movieImage = $(".movie-results").append(`<img src="https://image.tmdb.org/t/p/w500${movieData[i].poster_path}">`);
+        // $(".movie-results").append(`<h2>${movieData[i].original_title}</h2>`);
+        // $(".movie-results").append(`<p>${movieData[i].overview}</p>`);
+        // $(".movie-results").append(`<img src="https://image.tmdb.org/t/p/w500${movieData[i].poster_path}">`);
+
+        $(".movie-results").append(`
+            <ul>
+                <li>${movieData[i].original_title}</li>
+                <li>${movieData[i].overview}</li>
+                <li><img src="https://image.tmdb.org/t/p/w500${movieData[i].poster_path}"></li>
+            </ul>
+        `);
     }
 
 }
@@ -139,8 +153,6 @@ netflixChow.movieFood = (genreID) => {
     }
 
     netflixChow.getId(assignedIngredient);
-    // console.log(assignedIngredient);
-
 }
 
 netflixChow.getId= (ingredient) => {
@@ -157,37 +169,41 @@ netflixChow.getId= (ingredient) => {
         }
     }).then(function (res) {
         netflixChow.ingredientMatches = res.matches;
-        // console.log(netflixChow.ingredientMatches);
-        
-        // console.log(recRandomId);
-        // console.log(netflixChow.ingredientMatches[recRandomId]);
         
         let getRandomNumbers = [];
         let getRandomRecipes = [];
         
-        for (i=0; i<5; i++) {
-            let recRandomId = Math.floor(Math.random() * netflixChow.ingredientMatches.length);
+        //forced infinite loop with a break - it makes sure the array is limited to 5 elements and are unique
+        for (let i = 0; i < 5; i + 1) {
             
-            getRandomNumbers.push(recRandomId);
+            let recRandomId = Math.floor(Math.random() * netflixChow.ingredientMatches.length);
+
+            if (getRandomNumbers.includes(recRandomId)) {
+                // console.log(netflixChow.randomMovieArray);
+            }
+            else {
+                getRandomNumbers.push(recRandomId);
+            }
+            if (getRandomNumbers.length === 5) {
+                break;
+            }
         }
 
-        // console.log(getRandomNumbers);
-
-        for(let i =0; i < getRandomNumbers.length; i = i + 1) {
+        //pushes movies into an array based on an array of random index numbers
+        for(let i = 0 ; i < getRandomNumbers.length; i = i + 1) {
             getRandomRecipes.push(netflixChow.ingredientMatches[getRandomNumbers[i]]);
         }
 
-        // console.log(getRandomRecipes);
-        let getRandomId = getRandomRecipes.map((value) => value.id);
-        // console.log(getRandomId);
 
+        let getRandomId = getRandomRecipes.map((value) => value.id);
         getRandomId = getRandomId.map(netflixChow.getRec);
-        // console.log(getRandomId);
         
+        console.log(getRandomId);
+
         $.when(...getRandomId)
             .then((...recipeDetails) => {
+                console.log(recipeDetails);
                 recipeDetails = recipeDetails.map((value) => value[0]);
-                // console.log(recipeDetails);
                 netflixChow.getRecipes(recipeDetails);
             })
     })
@@ -232,20 +248,15 @@ netflixChow.getRecipes = (recipeInfo) => {
 
 
 netflixChow.displayRecipes = (recipeName, recipeUrl, recipeImage) => {
-    // console.log(recipeName[0], recipeUrl[0], recipeImage[0])
 
     // $('.form').on('submit', function(){
         for (i=0; i<5; i++){
-        $('.recipe-gallery').append(`<img src="${recipeImage[i]}">`);
-        $('.recipe-gallery').append(`<li>${recipeName[i]}</li>`);
-        $('.recipe-gallery').append(`<a href="${recipeUrl[i]}"> Recipe Link</a>`);
-
+            $('.recipe-gallery').append(`<img src="${recipeImage[i]}">`);
+            $('.recipe-gallery').append(`<li>${recipeName[i]}</li>`);
+            $('.recipe-gallery').append(`<a href="${recipeUrl[i]}"> Recipe Link</a>`);
         }
     // });
-
 }
-
-//<a href=""></a>
 
 //initialization function
 netflixChow.init = () => {
