@@ -4,24 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flickity/1.1.2/flickity.min.css">
     <link rel="stylesheet" href="styles/style.css">
     <title>Netflix & Chow</title>
-    <link rel="stylesheet" href="./styles/style.css">
 </head>
 <body>
 
-    <header>
-
-
 <div class="wrapper">
-    
     
     <header>
         <h1>Netflix & Chow</h1>
     </header>
 
     <main>
-        <form action="">
+        <form action="" class="genre-selection">
             <label for="animation">Animation</label>
             <input type="radio" name="genre" id="animation" value="Animation">
             
@@ -43,17 +39,19 @@
             <label for="western">Western</label>
             <input type="radio" name="genre" id="western" value="Western">
             
-            <input type="submit" value= "submit">
+            <input type="submit" value= "submit" class="movie-button button">
         </form>
 
 
         <div class="movie-card-container">
-            <ul class="movie-results"> 
+            <ul class="movie-results js-flickity"> 
+            
             </ul>
+            <button class="recipe-button button">Submit</button>
         </div><!-- /. movie-card-container -->
 
         <div class="recipe-card-container">
-            <ul class="recipe-gallery">
+            <ul class="recipe-gallery js-flickity">
             </ul>
         </div><!-- /.recipie-card-container -->
 
@@ -62,6 +60,7 @@
     
 
     <script src='https://code.jquery.com/jquery-3.2.1.min.js' integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4='crossorigin='anonymous'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flickity/1.1.2/flickity.pkgd.min.js"></script>
     <script src="js/script.js"></script>
 
 </body>
