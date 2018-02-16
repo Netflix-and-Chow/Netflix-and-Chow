@@ -109,11 +109,12 @@ netflixChow.displayMovies = (movieData) => {
     for(let i = 0; i < movieData.length; i = i + 1) {
 
         $(".movie-results").append(`
-            <ul>
-                <li>${movieData[i].original_title}</li>
-                <li>${movieData[i].overview}</li>
-                <li><img src="https://image.tmdb.org/t/p/w500${movieData[i].poster_path}"></li>
-            </ul>
+                <li>
+                <h3>${movieData[i].original_title}</h3>
+                <img src="https://image.tmdb.org/t/p/w500${movieData[i].poster_path}">
+                <p>${movieData[i].overview}<p>
+                </li>
+           
         `);
     }
 
@@ -248,7 +249,12 @@ netflixChow.getRecipes = (recipeInfo) => {
     });
    
     netflixChow.displayRecipes(recipeName, recipeUrl, recipeImage, recipeIngredientList); 
+
+    }
+
+
 }
+
 
 netflixChow.displayRecipes = (recipeName, recipeUrl, recipeImage, recipeIngredientList) => {
     console.log(recipeIngredientList);
@@ -258,8 +264,30 @@ netflixChow.displayRecipes = (recipeName, recipeUrl, recipeImage, recipeIngredie
         for (let i = 0; i < 5; i++){
             $('.recipe-gallery').append(`
             <li class ="recipe-card">
-                <h2>${recipeName[i]}</h2>
+                <h3>${recipeName[i]}</h3>
                 <img src="${recipeImage[i]}">
+
+                <h3>Ingredients:</h3>`
+            
+            );
+
+            for (let j = 0; j < recipeIngredientList[i].length; j = j + 1) {
+                $(".recipe-gallery").append(`
+                   <p>${recipeIngredientList[i][j]}</p>
+                   `);
+            }
+
+                 $('.recipe-gallery').append(`
+                <a href="${recipeUrl[i]}">See Full Recipe</a>
+            </li>
+            `);
+
+
+        }
+    // });
+    }
+
+
                 <h3>Ingredients:</h3>
                 <a href="${recipeUrl[i]}">See Full Recipe</a>
                 </li>
@@ -291,6 +319,7 @@ netflixChow.smoothScroll = () => {
         }, 1000);
     });
 }
+
 
 
 //initialization function

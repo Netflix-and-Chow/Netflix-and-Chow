@@ -1,21 +1,110 @@
 h1 {
-  font-family: 'forgotts'; }
+  font-family: 'forgotts';
+  font-size: 4rem;
+  text-align: center;
+  color: #B9090B; }
+
+header {
+  width: 100%;
+  height: 100vh; }
+
+.title-block {
+  width: 80%;
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  -webkit-transform: translate(-50%, -45%);
+  -ms-transform: translate(-50%, -45%);
+  transform: translate(-50%, -45%);
+  text-align: center; }
+  .title-block p {
+    width: 60%;
+    margin: 0 auto; }
+
+.start-button {
+  position: absolute;
+  bottom: -50%;
+  font-size: 32px;
+  border-right: 1px solid #B9090B;
+  border-bottom: 1px solid #B9090B;
+  height: 16px;
+  width: 16px;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s; }
+  .start-button:hover {
+    border-right: 1px solid white;
+    border-bottom: 1px solid white; }
+
+main {
+  height: 100vh; }
+
+ul li input {
+  display: none; }
+
+ul li label {
+  border: 1px solid #B9090B;
+  padding: 20px 30px;
+  color: #B9090B;
+  display: inline-block;
+  -webkit-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s; }
+  ul li label:hover {
+    -webkit-transform: scale(1.5);
+    -ms-transform: scale(1.5);
+    transform: scale(1.5);
+    color: white;
+    border: 1px solid white; }
+  ul li label:active {
+    -webkit-transform: scale(0.3);
+    -ms-transform: scale(0.3);
+    transform: scale(0.3);
+    color: white;
+    border: 1px solid white; }
+
+form .button {
+  padding: 10px 20px;
+  display: block;
+  clear: both;
+  margin: 0 auto;
+  margin-top: 30px;
+  text-transform: uppercase;
+  background-color: #090404;
+  color: white; }
+
+.movie-results, .recipe-gallery {
+  width: 90%;
+  margin: 0 auto; }
+  .movie-results li img, .recipe-gallery li img {
+    margin: 0 auto;
+    width: 80%; }
 
 @font-face {
   font-family: 'forgotts';
   src: url("forgotts.ttf") format("truetype"); }
 
 body {
-  font-family: font-size 62.5%; }
+  font-family: 'helvetica';
+  font-size: 62.5%;
+  background: #090404;
+  color: white; }
 
 .wrapper {
   max-width: 1170px;
   width: 90%;
   margin: 0 auto;
-  font-size: 1.4rem; }
+  font-size: 1rem; }
 
-ul li {
-  list-style: none; }
+ul {
+  padding: 0; }
+  ul li {
+    list-style: none; }
 
 img {
-  width: 400px; }
+  display: block; }

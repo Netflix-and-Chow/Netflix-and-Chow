@@ -1,0 +1,76 @@
+main{
+    height: 100vh;
+}
+
+
+ul{
+    // margin: 0 auto;
+    li{
+        input{
+            display: none;
+        }
+        label{
+            border: 1px solid $accent;
+            padding: 20px 30px;
+            // float: left;
+            color: $accent;
+            display: inline-block;
+            transition: all 0.5s;
+            &:hover{
+            transform: scale(1.5);
+            color: white;
+            border: 1px solid white;
+            }
+            &:active{
+            transform: scale(0.3);
+            color: white;
+            border: 1px solid white;
+            }
+        }
+        
+        
+    }
+}
+
+form{
+    .button{
+        padding: 10px 20px;
+        display: block;
+        clear: both;
+        margin: 0 auto;
+        margin-top: 30px;
+        text-transform: uppercase;
+        background-color: $background;
+        color: white;
+    }
+}
+
+
+//movies screen
+
+.movie-results, .recipe-gallery{
+    width: 90%;
+    margin: 0 auto;
+
+    li{
+        
+        img{
+            margin: 0 auto;
+            width: 80%;
+        }
+    }
+}
+
+
+// .recipe-gallery{
+//     width: 80%;
+//     margin: 0 auto;
+//     li{
+//         img{
+//             margin: 0 auto;            
+//             width: 100%;
+//         }
+//     }
+// }
+
+
