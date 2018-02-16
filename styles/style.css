@@ -1,0 +1,21 @@
+h1 {
+  font-family: 'forgotts'; }
+
+@font-face {
+  font-family: 'forgotts';
+  src: url("forgotts.ttf") format("truetype"); }
+
+body {
+  font-family: font-size 62.5%; }
+
+.wrapper {
+  max-width: 1170px;
+  width: 90%;
+  margin: 0 auto;
+  font-size: 1.4rem; }
+
+ul li {
+  list-style: none; }
+
+img {
+  width: 400px; }

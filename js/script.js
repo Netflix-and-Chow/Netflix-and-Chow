@@ -88,7 +88,8 @@ netflixChow.movieSelection = () => {
         netflixChow.randomMovieArray = [];
 
         //clears the previous results appended to the body
-        $(".results").empty();
+        $(".movie-results").empty();
+        $(".recipe-gallery").empty();
     });
 };
 
@@ -226,26 +227,34 @@ netflixChow.getRecipes = (recipeInfo) => {
         return value.images[0].hostedLargeUrl;
     });
     // console.log(recipeImage)
+
+    let recipeIngredientList = recipeInfo.map((value) => {
+        // console.log(value);
+        return value.ingredientLines;
+    });
    
-    netflixChow.displayRecipes(recipeName, recipeUrl, recipeImage); 
+    netflixChow.displayRecipes(recipeName, recipeUrl, recipeImage, recipeIngredientList); 
     }
 
 
-netflixChow.displayRecipes = (recipeName, recipeUrl, recipeImage) => {
-    // console.log(recipeName[0], recipeUrl[0], recipeImage[0])
+netflixChow.displayRecipes = (recipeName, recipeUrl, recipeImage, recipeIngredientList) => {
+    console.log(recipeName[0], recipeUrl[0], recipeImage[0], recipeIngredientList[0])
 
     // $('.form').on('submit', function(){
         for (i=0; i<5; i++){
-        $('.recipe-gallery').append(`<img src="${recipeImage[i]}">`);
-        $('.recipe-gallery').append(`<li>${recipeName[i]}</li>`);
-        $('.recipe-gallery').append(`<a href="${recipeUrl[i]}"> Recipe Link</a>`);
-
+            $('.recipe-gallery').append(`
+            <li class ="recipe-card">
+                <h2>${recipeName[i]}</h2>
+                <img src="${recipeImage[i]}">
+                <h3>Ingredients:</h3>
+                <p>${recipeIngredientList}</p>
+                <button><a href="${recipeUrl[i]}">See Full Recipe</a><button>
+            </li>
+            `);
         }
     // });
 
 }
-
-//<a href=""></a>
 
 //initialization function
 netflixChow.init = () => {
