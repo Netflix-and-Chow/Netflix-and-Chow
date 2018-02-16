@@ -1,4 +1,4 @@
-//namespace variables                             
+//namespace variables                      
 const netflixChow = {};
 
 netflixChow.movieGenre = [];
@@ -17,7 +17,8 @@ netflixChow.getMovieData = (id) => {
             api_key: "82927986e43b7cf24d8d6e29aacb0e5c",
             with_genres:id,  
             language:"en-US",
-            page:100
+            page:1,
+            "release_date.gte":2010
         }
     }).then((res) => {
         // console.log(res);
@@ -56,9 +57,9 @@ netflixChow.sortMovieData = (movieData) => {
 
 netflixChow.movieSelection = () => {
     
-    $("form").on("submit", function(e) {
+    $(".genre-selection").on("submit", function(e) {
         e.preventDefault();
-        const userInputMovie = $("input[type=radio]:checked").val();
+        let userInputMovie = $("input[type=radio]:checked").val();
 
         let genreId;
 
@@ -96,6 +97,7 @@ netflixChow.movieSelection = () => {
         //clears the previous results appended to the body
         $(".movie-results").empty();
         $(".recipe-gallery").empty();
+
     });
 };
 
@@ -105,9 +107,6 @@ netflixChow.displayMovies = (movieData) => {
     // console.log(movieData);
 
     for(let i = 0; i < movieData.length; i = i + 1) {
-        // $(".movie-results").append(`<h2>${movieData[i].original_title}</h2>`);
-        // $(".movie-results").append(`<p>${movieData[i].overview}</p>`);
-        // $(".movie-results").append(`<img src="https://image.tmdb.org/t/p/w500${movieData[i].poster_path}">`);
 
         $(".movie-results").append(`
             <ul>
@@ -249,40 +248,55 @@ netflixChow.getRecipes = (recipeInfo) => {
     });
    
     netflixChow.displayRecipes(recipeName, recipeUrl, recipeImage, recipeIngredientList); 
-    }
-
-
-
-netflixChow.displayRecipes = (recipeName, recipeUrl, recipeImage) => {
-
-    // $('.form').on('submit', function(){
-        for (i=0; i<5; i++){
-            $('.recipe-gallery').append(`<img src="${recipeImage[i]}">`);
-            $('.recipe-gallery').append(`<li>${recipeName[i]}</li>`);
-            $('.recipe-gallery').append(`<a href="${recipeUrl[i]}"> Recipe Link</a>`);
+}
 
 netflixChow.displayRecipes = (recipeName, recipeUrl, recipeImage, recipeIngredientList) => {
-    console.log(recipeName[0], recipeUrl[0], recipeImage[0], recipeIngredientList[0])
+    console.log(recipeIngredientList);
 
-    // $('.form').on('submit', function(){
-        for (i=0; i<5; i++){
+    $('.recipe-button').on('click', function(){
+        $(".recipe-gallery").empty();
+        for (let i = 0; i < 5; i++){
             $('.recipe-gallery').append(`
             <li class ="recipe-card">
                 <h2>${recipeName[i]}</h2>
                 <img src="${recipeImage[i]}">
                 <h3>Ingredients:</h3>
-                <p>${recipeIngredientList}</p>
-                <button><a href="${recipeUrl[i]}">See Full Recipe</a><button>
-            </li>
-            `);
-
+                <a href="${recipeUrl[i]}">See Full Recipe</a>
+                </li>
+                `);
+                for(let j = 0; j < recipeIngredientList[i].length; j = j + 1) {
+                    //if statement removes ingredients that are repeated
+                    if(recipeIngredientList[i][j] !== recipeIngredientList[i][j-1]) {
+                        $(".recipe-gallery").append(`
+                        <p>${recipeIngredientList[i][j]}</p>
+                        `);
+                    }
+            }
         }
-    // });
+    });
+    }
+
+netflixChow.smoothScroll = () => {
+
+    //smooth scroll code for submit buttons
+    $(".movie-button").on("click", function () {
+        $("html").animate({
+            scrollTop: $(".movie-card-container").offset().top
+        }, 700);
+    });
+
+    $(".recipe-button").on("click", function () {
+        $("html").animate({
+            scrollTop: $(".recipe-card-container").offset().top
+        }, 1000);
+    });
 }
+
 
 //initialization function
 netflixChow.init = () => {
     netflixChow.movieSelection();
+    netflixChow.smoothScroll();
 }
 
 
