@@ -110,11 +110,12 @@ netflixChow.displayMovies = (movieData) => {
         // $(".movie-results").append(`<img src="https://image.tmdb.org/t/p/w500${movieData[i].poster_path}">`);
 
         $(".movie-results").append(`
-            <ul>
-                <li>${movieData[i].original_title}</li>
-                <li>${movieData[i].overview}</li>
-                <li><img src="https://image.tmdb.org/t/p/w500${movieData[i].poster_path}"></li>
-            </ul>
+                <li>
+                <h3>${movieData[i].original_title}</h3>
+                <img src="https://image.tmdb.org/t/p/w500${movieData[i].poster_path}">
+                <p>${movieData[i].overview}<p>
+                </li>
+           
         `);
     }
 
@@ -252,15 +253,6 @@ netflixChow.getRecipes = (recipeInfo) => {
     }
 
 
-
-netflixChow.displayRecipes = (recipeName, recipeUrl, recipeImage) => {
-
-    // $('.form').on('submit', function(){
-        for (i=0; i<5; i++){
-            $('.recipe-gallery').append(`<img src="${recipeImage[i]}">`);
-            $('.recipe-gallery').append(`<li>${recipeName[i]}</li>`);
-            $('.recipe-gallery').append(`<a href="${recipeUrl[i]}"> Recipe Link</a>`);
-
 netflixChow.displayRecipes = (recipeName, recipeUrl, recipeImage, recipeIngredientList) => {
     console.log(recipeName[0], recipeUrl[0], recipeImage[0], recipeIngredientList[0])
 
@@ -268,17 +260,28 @@ netflixChow.displayRecipes = (recipeName, recipeUrl, recipeImage, recipeIngredie
         for (i=0; i<5; i++){
             $('.recipe-gallery').append(`
             <li class ="recipe-card">
-                <h2>${recipeName[i]}</h2>
+                <h3>${recipeName[i]}</h3>
                 <img src="${recipeImage[i]}">
-                <h3>Ingredients:</h3>
-                <p>${recipeIngredientList}</p>
-                <button><a href="${recipeUrl[i]}">See Full Recipe</a><button>
+                <h3>Ingredients:</h3>`
+            
+            );
+
+            for (let j = 0; j < recipeIngredientList[i].length; j = j + 1) {
+                $(".recipe-gallery").append(`
+                   <p>${recipeIngredientList[i][j]}</p>
+                   `);
+            }
+
+                 $('.recipe-gallery').append(`
+                <a href="${recipeUrl[i]}">See Full Recipe</a>
             </li>
             `);
 
+
         }
     // });
-}
+    }
+
 
 //initialization function
 netflixChow.init = () => {
