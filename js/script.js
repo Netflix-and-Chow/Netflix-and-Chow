@@ -57,7 +57,7 @@ netflixChow.sortMovieData = (movieData) => {
 
 netflixChow.movieSelection = () => {
     
-    $(".genre-selection").on("submit", function(e) {
+    $("form").on("submit", function(e) {
         e.preventDefault();
         let userInputMovie = $("input[type=radio]:checked").val();
 
@@ -84,6 +84,8 @@ netflixChow.movieSelection = () => {
         else if(userInputMovie === "Western") {
             genreId = 37;
         }
+
+        console.log(genreId);
 
         //passing genreId to the getMovieData function to retrieve movies and movieFood function for recipe retrieval
         netflixChow.getMovieData(genreId);
@@ -253,9 +255,8 @@ netflixChow.getRecipes = (recipeInfo) => {
     }
 
 
-
 netflixChow.displayRecipes = (recipeName, recipeUrl, recipeImage, recipeIngredientList) => {
-    console.log(recipeIngredientList);
+    // console.log(recipeIngredientList);
 
     $('.recipe-button').on('click', function(){
         $(".recipe-gallery").empty();
@@ -268,9 +269,13 @@ netflixChow.displayRecipes = (recipeName, recipeUrl, recipeImage, recipeIngredie
             );
 
             for (let j = 0; j < recipeIngredientList[i].length; j = j + 1) {
-                $(".recipe-gallery").append(`
-                   <p>${recipeIngredientList[i][j]}</p>
-                   `);
+
+                //only append if the ingredients are unique
+                if(recipeIngredientList[i][j] !== recipeIngredientList[i][j-1]) {
+                    $(".recipe-gallery").append(`
+                       <p>${recipeIngredientList[i][j]}</p>
+                       `);
+                }
             }
 
                  $('.recipe-gallery').append(`
@@ -282,6 +287,7 @@ netflixChow.displayRecipes = (recipeName, recipeUrl, recipeImage, recipeIngredie
    
     });
 }
+
 
 
 netflixChow.smoothScroll = () => {
@@ -309,8 +315,6 @@ netflixChow.flickity = function () {
         wrapAround: true
     });
 }
-
-
 
 
 //initialization function
