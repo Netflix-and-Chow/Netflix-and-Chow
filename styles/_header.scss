@@ -2,7 +2,9 @@ h1{
     font-family: 'forgotts'; 
     font-size: 4rem;
     text-align: center;
-    color: $accent;
+    color: white;
+    text-transform: uppercase;
+
 }
 
 header{
@@ -20,7 +22,7 @@ header{
     p{
         width: 60%;
         margin: 0 auto;
-        // display: none;
+       color: $accent;
     }
 }
 
