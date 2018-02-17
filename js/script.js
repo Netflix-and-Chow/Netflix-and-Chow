@@ -314,6 +314,18 @@ netflixChow.flickity = function () {
         pageDots: false,
         wrapAround: true
     });
+    $("movie-results").flickity({
+        cellAlign: 'left',
+        contain: true,
+        pageDots: false,
+        wrapAround: true
+    });
+    $("recipe-gallery").flickity({
+        cellAlign: 'left',
+        contain: true,
+        pageDots: false,
+        wrapAround: true
+    });
 }
 
 
