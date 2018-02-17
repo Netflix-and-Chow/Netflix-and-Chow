@@ -114,7 +114,6 @@ netflixChow.displayMovies = (movieData) => {
                 <img src="https://image.tmdb.org/t/p/w500${movieData[i].poster_path}">
                 <p>${movieData[i].overview}<p>
                 </li>
-           
         `);
     }
 
@@ -167,6 +166,7 @@ netflixChow.getId= (ingredient) => {
             q:`${ingredient}`
 
         }
+
     }).then(function (res) {
         netflixChow.ingredientMatches = res.matches;
         
@@ -189,7 +189,7 @@ netflixChow.getId= (ingredient) => {
             }
         }
 
-        //pushes movies into an array based on an array of random index numbers
+        //pushes recipes into an array based on an array of random index numbers
         for(let i = 0 ; i < getRandomNumbers.length; i = i + 1) {
             getRandomRecipes.push(netflixChow.ingredientMatches[getRandomNumbers[i]]);
         }
@@ -207,7 +207,7 @@ netflixChow.getId= (ingredient) => {
                 netflixChow.getRecipes(recipeDetails);
             })
     })
-};
+}
 
 
 netflixChow.getRec = (recId) => {
@@ -223,7 +223,7 @@ netflixChow.getRec = (recId) => {
     });
 }
 
-
+//qsorts through recpies from api to get info info that is shown on page
 netflixChow.getRecipes = (recipeInfo) => {
     // console.log(recipeInfo);
     
@@ -253,8 +253,6 @@ netflixChow.getRecipes = (recipeInfo) => {
     }
 
 
-}
-
 
 netflixChow.displayRecipes = (recipeName, recipeUrl, recipeImage, recipeIngredientList) => {
     console.log(recipeIngredientList);
@@ -266,9 +264,7 @@ netflixChow.displayRecipes = (recipeName, recipeUrl, recipeImage, recipeIngredie
             <li class ="recipe-card">
                 <h3>${recipeName[i]}</h3>
                 <img src="${recipeImage[i]}">
-
                 <h3>Ingredients:</h3>`
-            
             );
 
             for (let j = 0; j < recipeIngredientList[i].length; j = j + 1) {
@@ -282,27 +278,11 @@ netflixChow.displayRecipes = (recipeName, recipeUrl, recipeImage, recipeIngredie
             </li>
             `);
 
-
-        }
-    // });
-    }
-
-
-                <h3>Ingredients:</h3>
-                <a href="${recipeUrl[i]}">See Full Recipe</a>
-                </li>
-                `);
-                for(let j = 0; j < recipeIngredientList[i].length; j = j + 1) {
-                    //if statement removes ingredients that are repeated
-                    if(recipeIngredientList[i][j] !== recipeIngredientList[i][j-1]) {
-                        $(".recipe-gallery").append(`
-                        <p>${recipeIngredientList[i][j]}</p>
-                        `);
-                    }
             }
-        }
+   
     });
-    }
+}
+
 
 netflixChow.smoothScroll = () => {
 
@@ -318,7 +298,18 @@ netflixChow.smoothScroll = () => {
             scrollTop: $(".recipe-card-container").offset().top
         }, 1000);
     });
+
 }
+
+netflixChow.flickity = function () {
+    $('.genre-list').flickity({
+        cellAlign: 'left',
+        contain: true,
+        pageDots: false,
+        wrapAround: true
+    });
+}
+
 
 
 
@@ -326,6 +317,7 @@ netflixChow.smoothScroll = () => {
 netflixChow.init = () => {
     netflixChow.movieSelection();
     netflixChow.smoothScroll();
+    netflixChow.flickity ();
 }
 
 
