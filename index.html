@@ -18,58 +18,60 @@
         <div class="title-block">
             <h1>Netflix & Chow</h1>
             <p>An app to get you the perfect movie and food pairing</p>
-            <a class="start-button" href="#mainScreen"></a>
+            <!-- <a class="start-button" href="#mainScreen"></a> -->
+        </div>
+        <div class="genre-bar">
+            <h2>Genre</h2>
+            <form action="">
+                <ul class="genre-list">
+                    <li>
+                        <label for="animation">Animation</label>
+                        <input type="radio" name="genre" id="animation" value="Animation">
+                    </li>
+                    
+                    <li>
+                        <label for="drama">Drama</label>
+                        <input type="radio" name="genre" id="drama" value="Drama">
+                    </li>
+                    
+                    <li>
+                        <label for="comedy">Comedy</label>
+                        <input type="radio" name="genre" id="comedy" value="Comedy">
+                    </li>
+                    
+                    <li>  
+                        <label for="horror">Horror</label>
+                        <input type="radio" name="genre" id="horror" value="Horror">
+                    </li>
+                    
+                    <li>
+                        <label for="romance">Romance</label>
+                        <input type="radio" name="genre" id="romance" value="Romance">
+                    </li>
+                
+                    <li>
+                        <label for="sci-fi">SciFi</label>
+                        <input type="radio" name="genre" id="sci-fi" value="Sci-Fi">
+                    </li>
+
+                    <li>
+                        <label for="western">Western</label>
+                        <input type="radio" name="genre" id="western" value="Western">
+                    </li>
+                </ul>
+
+                <input type="submit" value="show" class="movie-button">
+            </form>
         </div>
         
     </header>
 
 
     <main id="mainScreen">
-        <h2>Genre</h2>
-        <form action="">
-            <ul class="genre-list">
-                <li>
-                    <label for="animation">Animation</label>
-                    <input type="radio" name="genre" id="animation" value="Animation">
-                </li>
-                
-                <li>
-                    <label for="drama">Drama</label>
-                    <input type="radio" name="genre" id="drama" value="Drama">
-                </li>
-                
-                <li>
-                    <label for="comedy">Comedy</label>
-                    <input type="radio" name="genre" id="comedy" value="Comedy">
-                </li>
-                
-                <li>  
-                    <label for="horror">Horror</label>
-                    <input type="radio" name="genre" id="horror" value="Horror">
-                </li>
-                
-                <li>
-                    <label for="romance">Romance</label>
-                    <input type="radio" name="genre" id="romance" value="Romance">
-                </li>
-            
-                <li>
-                    <label for="sci-fi">Sci-Fi</label>
-                    <input type="radio" name="genre" id="sci-fi" value="Sci-Fi">
-                </li>
-
-                <li>
-                    <label for="western">Western</label>
-                    <input type="radio" name="genre" id="western" value="Western">
-                </li>
-            </ul>
-
-            <input type="submit" value="show" class="movie-button">
-        </form>
-
         <h2>Movies</h2>
         <div class="movie-card-container">
             <ul class="movie-results"> 
+                <li><img src="./assets/partay.jpg" alt=""></li>
             </ul>
             <button class="recipe-button button">Submit</button>
         </div><!-- /. movie-card-container -->
@@ -77,6 +79,9 @@
         <h2>Recipes</h2>
         <div class="recipe-card-container">
             <ul class="recipe-gallery">
+                <li>
+                    <img src="./assets/partay.jpg" alt="">
+                </li>
             </ul>
         </div><!-- /.recipie-card-container -->
 
@@ -90,8 +95,8 @@
     
 
     <script src='https://code.jquery.com/jquery-3.2.1.min.js' integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4='crossorigin='anonymous'></script>
-    <script src="js/script.js"></script>
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.js"></script>
+    <script src="js/script.js"></script>
 
 </body>
 

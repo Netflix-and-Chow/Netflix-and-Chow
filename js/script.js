@@ -90,6 +90,7 @@ netflixChow.movieSelection = () => {
         //passing genreId to the getMovieData function to retrieve movies and movieFood function for recipe retrieval
         netflixChow.getMovieData(genreId);
         netflixChow.movieFood(genreId);
+        
 
         //clears array at the end of the submit and after the for loop has ran and pushed random numbers, also clears the radio button selection
         $("input[type=radio]").prop("checked", false);
@@ -330,7 +331,8 @@ netflixChow.flickityGenre = function () {
 
 netflixChow.flickityMovie = function () {
     $('.movie-results').flickity({
-        // cellAlign: 'left',
+        cellAlign: 'left',
+        // cellSelector: 'img',
         contain: true,
         pageDots: false,
         wrapAround: true
