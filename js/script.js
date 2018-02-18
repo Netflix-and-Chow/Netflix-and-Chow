@@ -85,11 +85,12 @@ netflixChow.movieSelection = () => {
             genreId = 37;
         }
 
-        console.log(genreId);
+        // console.log(genreId);
 
         //passing genreId to the getMovieData function to retrieve movies and movieFood function for recipe retrieval
         netflixChow.getMovieData(genreId);
         netflixChow.movieFood(genreId);
+        
 
         //clears array at the end of the submit and after the for loop has ran and pushed random numbers, also clears the radio button selection
         $("input[type=radio]").prop("checked", false);
@@ -98,7 +99,7 @@ netflixChow.movieSelection = () => {
 
         //clears the previous results appended to the body
         $(".movie-results").empty();
-        $(".recipe-gallery").empty();
+        $(".recipe-results").empty();
 
     });
 };
@@ -111,11 +112,11 @@ netflixChow.displayMovies = (movieData) => {
     for(let i = 0; i < movieData.length; i = i + 1) {
 
         $(".movie-results").append(`
-                <li>
-                <h3>${movieData[i].original_title}</h3>
+                <div class="movie-card">
                 <img src="https://image.tmdb.org/t/p/w500${movieData[i].poster_path}">
+                <h3>${movieData[i].original_title}</h3>
                 <p>${movieData[i].overview}<p>
-                </li>
+                </div>
         `);
     }
     netflixChow.flickityMovie();
@@ -200,11 +201,11 @@ netflixChow.getId= (ingredient) => {
         let getRandomId = getRandomRecipes.map((value) => value.id);
         getRandomId = getRandomId.map(netflixChow.getRec);
         
-        console.log(getRandomId);
+        // console.log(getRandomId);
 
         $.when(...getRandomId)
             .then((...recipeDetails) => {
-                console.log(recipeDetails);
+                // console.log(recipeDetails);
                 recipeDetails = recipeDetails.map((value) => value[0]);
                 netflixChow.getRecipes(recipeDetails);
             })
@@ -259,28 +260,28 @@ netflixChow.displayRecipes = (recipeName, recipeUrl, recipeImage, recipeIngredie
     // console.log(recipeIngredientList);
 
     $('.recipe-button').on('click', function(){
-        $(".recipe-gallery").empty();
+        $(".recipe-results").empty();
         for (let i = 0; i < 5; i++){
-            $('.recipe-gallery').append(`
-            <li class ="recipe-card">
-                <h3>${recipeName[i]}</h3>
+            $('.recipe-results').append(`
+            <div class ="recipe-card">
                 <img src="${recipeImage[i]}">
-                <h3>Ingredients:</h3>`
+                <h3>${recipeName[i]}</h3>
+                <p>Ingredients:</p>`
             );
 
             for (let j = 0; j < recipeIngredientList[i].length; j = j + 1) {
 
                 //only append if the ingredients are unique
                 if(recipeIngredientList[i][j] !== recipeIngredientList[i][j-1]) {
-                    $(".recipe-gallery").append(`
+                    $(".recipe-results").append(`
                        <p>${recipeIngredientList[i][j]}</p>
                        `);
                 }
             }
 
-                 $('.recipe-gallery').append(`
-                <a href="${recipeUrl[i]}">See Full Recipe</a>
-            </li>
+                 $('.recipe-results').append(`
+                <a class="link" href="${recipeUrl[i]}">See Full Recipe</a>
+            </div>
             `);
 
             }
@@ -295,13 +296,13 @@ netflixChow.smoothScroll = () => {
     //smooth scroll code for submit buttons
     $(".movie-button").on("click", function () {
         $("html").animate({
-            scrollTop: $(".movie-card-container").offset().top
+            scrollTop: $(".movie-results").offset().top
         }, 700);
     });
 
     $(".recipe-button").on("click", function () {
         $("html").animate({
-            scrollTop: $(".recipe-card-container").offset().top
+            scrollTop: $(".recipe-results").offset().top
         }, 1000);
     });
 
@@ -320,7 +321,7 @@ netflixChow.flickityGenre = function () {
         pageDots: false,
         wrapAround: true
     });
-    $("recipe-gallery").flickity({
+    $("recipe-results").flickity({
         cellAlign: 'left',
         contain: true,
         pageDots: false,
@@ -330,7 +331,8 @@ netflixChow.flickityGenre = function () {
 
 netflixChow.flickityMovie = function () {
     $('.movie-results').flickity({
-        // cellAlign: 'left',
+        cellAlign: 'left',
+        // cellSelector: 'img',
         contain: true,
         pageDots: false,
         wrapAround: true
@@ -338,7 +340,7 @@ netflixChow.flickityMovie = function () {
 }
 
 netflixChow.flickityRecipe = function () {
-    $('.recipe-gallery').flickity({
+    $('.recipe-results').flickity({
         // cellAlign: 'left',
         contain: true,
         pageDots: false,
