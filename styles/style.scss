@@ -2,7 +2,6 @@
 @import 'variable';
 @import 'header';
 @import 'main';
-@import 'recipes';
 @import 'media';
 
 
@@ -36,3 +35,29 @@ img{
     display: block;
 }
 
+
+.link{
+    color: $accent;
+    text-decoration: none;
+    transition: all 0.5s;
+}
+
+
+.recipe-results{
+    img{
+        width: 90%;
+        margin: 0 auto;
+    }
+    p{
+        margin: 8px 0;
+    }
+}
+
+
+footer{
+    padding: 20px;
+    background: $accent;
+    margin: 0;
+    color: white;
+    margin-top: 30px;
+}
