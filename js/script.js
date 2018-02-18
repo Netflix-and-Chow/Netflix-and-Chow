@@ -157,6 +157,8 @@ netflixChow.movieFood = (genreID) => {
     netflixChow.getId(assignedIngredient);
 }
 
+
+//pulls API data from Yummly based on the assigned Ingredient --> linked to movie genre IDs
 netflixChow.getId= (ingredient) => {
     $.ajax({
         url: 'http://api.yummly.com/v1/api/recipes',
@@ -289,7 +291,6 @@ netflixChow.displayRecipes = (recipeName, recipeUrl, recipeImage, recipeIngredie
     });
     netflixChow.flickityRecipe();
 }
-
 
 
 netflixChow.smoothScroll = () => {
