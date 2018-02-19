@@ -29,7 +29,8 @@ ul{
 .movie-card{
     width: 100%;
     img{
-        width: 90%;
+        // width: 90%;
+        height: 70vh;
         margin: 0 auto;
         display: block;
     }
@@ -38,5 +39,22 @@ ul{
 // recipe screen
 
 
+.recipe-card{
+    width: 40%;
+    img{
+        width: 100%;
+        margin: 0 auto;
+    }
+    
+}
 
+
+footer{
+    padding: 20px 80px 20px 0;
+    background: $accent;
+    margin: 0;
+    color: white;
+    margin-top: 30px;
+    text-align: right;
+}
 
