@@ -288,8 +288,8 @@ netflixChow.displayRecipes = (recipeName, recipeUrl, recipeImage, recipeIngredie
 
             }
    
+            netflixChow.flickityRecipe();
     });
-    netflixChow.flickityRecipe();
 }
 
 
