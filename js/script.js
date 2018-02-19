@@ -61,6 +61,11 @@ netflixChow.movieSelection = () => {
         e.preventDefault();
         let userInputMovie = $("input[type=radio]:checked").val();
 
+
+        //clears the previous results appended to the body
+        $(".movie-card").remove();
+        $(".recipe-card").remove();
+
         let genreId;
 
         if(userInputMovie === "Animation") {
@@ -97,9 +102,8 @@ netflixChow.movieSelection = () => {
         netflixChow.movieGenre=[];
         netflixChow.randomMovieArray = [];
 
-        //clears the previous results appended to the body
-        $(".movie-results").empty();
-        $(".recipe-results").empty();
+        // $(".movie-results").empty();
+        // $(".recipe-results").empty();
 
     });
 };
@@ -107,7 +111,7 @@ netflixChow.movieSelection = () => {
 
 //display sorted data
 netflixChow.displayMovies = (movieData) => {
-    // console.log(movieData);
+    console.log(movieData);
 
     for(let i = 0; i < movieData.length; i = i + 1) {
 
@@ -119,6 +123,7 @@ netflixChow.displayMovies = (movieData) => {
                 </div>
         `);
     }
+    $(".movie-results").flickity("destroy");
     netflixChow.flickityMovie();
 }
 
@@ -262,6 +267,8 @@ netflixChow.displayRecipes = (recipeName, recipeUrl, recipeImage, recipeIngredie
     // console.log(recipeIngredientList);
 
     $('.recipe-button').on('click', function(){
+        $(".recipe-results").flickity("destroy");
+        $(".recipe-card").remove();
         $(".recipe-results").empty();
         for (let i = 0; i < 5; i++){
             $('.recipe-results').append(`
@@ -287,14 +294,24 @@ netflixChow.displayRecipes = (recipeName, recipeUrl, recipeImage, recipeIngredie
             `);
 
             }
+<<<<<<< HEAD
    
             netflixChow.flickityRecipe();
+=======
+        netflixChow.flickityRecipe();
+>>>>>>> 5eaa2eeb5d9610120d234f1a6859a530dc9445f0
     });
 }
 
 
 netflixChow.smoothScroll = () => {
     //smooth scroll code for submit buttons
+    $("form input[type=radio]").on("click", function() {
+        $("html").animate({
+            scrollTop: $(".movie-button").offset().top
+        }, 700);
+    })
+
     $(".movie-button").on("click", function () {
         $("html").animate({
             scrollTop: $(".movie-results").offset().top
@@ -307,6 +324,9 @@ netflixChow.smoothScroll = () => {
         }, 1000);
     });
 
+    $(".reset").on("click", function() {
+        $("html").animate({ scrollTop: 0 }, "slow");
+    });
 }
 
 netflixChow.flickityGenre = function () {
@@ -316,39 +336,39 @@ netflixChow.flickityGenre = function () {
         pageDots: false,
         wrapAround: true
     });
-    $("movie-results").flickity({
-        cellAlign: 'left',
-        contain: true,
-        pageDots: false,
-        wrapAround: true
-    });
-    $("recipe-results").flickity({
-        cellAlign: 'left',
-        contain: true,
-        pageDots: false,
-        wrapAround: true
-    });
+    // $("movie-results").flickity({
+    //     cellAlign: 'left',
+    //     contain: true,
+    //     pageDots: false,
+    //     wrapAround: true
+    // });
+    // $("recipe-results").flickity({
+    //     cellAlign: 'left',
+    //     contain: true,
+    //     pageDots: false,
+    //     wrapAround: true
+    // });
+    console.log("true");
 }
 
 netflixChow.flickityMovie = function () {
     $('.movie-results').flickity({
         cellAlign: 'left',
-        // cellSelector: 'img',
         contain: true,
         pageDots: false,
         wrapAround: true
     });
+    console.log("movies good");
 }
 
 netflixChow.flickityRecipe = function () {
     $('.recipe-results').flickity({
-        // cellAlign: 'left',
         contain: true,
         pageDots: false,
         wrapAround: true
     });
+    console.log("recipe good");
 }
-
 
 
 
@@ -357,7 +377,6 @@ netflixChow.init = () => {
     netflixChow.movieSelection();
     netflixChow.smoothScroll();
     netflixChow.flickityGenre();
-    
 }
 
 
