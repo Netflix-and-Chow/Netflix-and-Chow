@@ -257,7 +257,7 @@ ul li label {
   .movie-card .movieOverlay {
     width: 90%;
     position: absolute;
-    padding: 10px;
+    padding: 5px 20px;
     margin: 0 auto;
     bottom: 55px;
     right: 0;
