@@ -166,7 +166,7 @@ netflixChow.movieFood = (genreID) => {
 //pulls API data from Yummly based on the assigned Ingredient --> linked to movie genre IDs
 netflixChow.getId= (ingredient) => {
     $.ajax({
-        url: 'http://api.yummly.com/v1/api/recipes',
+        url: 'https://api.yummly.com/v1/api/recipes',
         dataType: 'json',
         method: 'GET',
         data: {
@@ -222,7 +222,7 @@ netflixChow.getId= (ingredient) => {
 
 netflixChow.getRec = (recId) => {
     return $.ajax({
-        url: `http://api.yummly.com/v1/api/recipe/${recId}`,
+        url: `https://api.yummly.com/v1/api/recipe/${recId}`,
         dataType: 'json',
         method: 'GET',
         data: {
@@ -278,15 +278,15 @@ netflixChow.displayRecipes = (recipeName, recipeUrl, recipeImage, recipeIngredie
                 <p>Ingredients:</p>`
             );
 
-            for (let j = 0; j < recipeIngredientList[i].length; j = j + 1) {
+            // for (let j = 0; j < recipeIngredientList[i].length; j = j + 1) {
 
-                //only append if the ingredients are unique
-                if(recipeIngredientList[i][j] !== recipeIngredientList[i][j-1]) {
-                    $(".recipe-results").append(`
-                       <p>${recipeIngredientList[i][j]}</p>
-                       `);
-                }
-            }
+            //     //only append if the ingredients are unique
+            //     if(recipeIngredientList[i][j] !== recipeIngredientList[i][j-1]) {
+            //         $(".recipe-results").append(`
+            //            <p>${recipeIngredientList[i][j]}</p>
+            //            `);
+            //     }
+            // }
 
                  $('.recipe-results').append(`
                 <a class="link" href="${recipeUrl[i]}">See Full Recipe</a>
@@ -321,6 +321,7 @@ netflixChow.smoothScroll = () => {
 
     $(".reset").on("click", function() {
         $("html").animate({ scrollTop: 0 }, "slow");
+        // window.location.reload(true);
     });
 }
 
