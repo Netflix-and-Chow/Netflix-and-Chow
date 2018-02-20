@@ -57,6 +57,11 @@ netflixChow.sortMovieData = (movieData) => {
 
 netflixChow.movieSelection = () => {
     
+    $("form label").on("click", function() {
+        $("form label").css("border", "");
+        $(this).css("border", "1px solid white");
+    });
+
     $("form").on("submit", function(e) {
         e.preventDefault();
         let userInputMovie = $("input[type=radio]:checked").val();
