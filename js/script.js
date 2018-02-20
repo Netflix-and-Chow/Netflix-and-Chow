@@ -174,7 +174,7 @@ netflixChow.movieFood = (genreID) => {
 netflixChow.getId= (ingredient) => {
     $.ajax({
         url: 'https://api.yummly.com/v1/api/recipes',
-        dataType: 'json',
+        dataType: 'jsonp',
         method: 'GET',
         data: {
             _app_id: "3a0b16d3",
@@ -230,7 +230,7 @@ netflixChow.getId= (ingredient) => {
 netflixChow.getRec = (recId) => {
     return $.ajax({
         url: `https://api.yummly.com/v1/api/recipe/${recId}`,
-        dataType: 'json',
+        dataType: 'jsonp',
         method: 'GET',
         data: {
             _app_id: "3a0b16d3",
