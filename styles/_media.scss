@@ -1,0 +1,33 @@
+@media (min-width: 750px){
+    .movie-card{
+          
+        img {
+            // height: 70vh;
+            width: 50%;
+            // width: auto;
+        }
+        
+        .movieOverlay{
+            width: 50%;
+        } 
+        
+        .readMore{
+            padding: 19px 130px;
+            text-align: center;
+        }
+
+}
+
+    .recipe-card{
+        img{
+            width: 50vh;
+            
+        }
+        .recipe-label{
+             width: 50vh;
+             margin: 0 auto;
+        }
+    }
+    
+}
+
