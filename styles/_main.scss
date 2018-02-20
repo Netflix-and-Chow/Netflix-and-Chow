@@ -27,7 +27,7 @@ ul{
             color: white;
             border: 1px solid white;
             }
-            input:checked {
+            input[type="radio"]:checked label {
                border: 1px solid white;
             }
         }
@@ -76,7 +76,6 @@ ul{
     p{
         margin: 0;
         width: auto;
-        margin: 0;
         float: left;
         padding: 0 10px 0 30px;
     }

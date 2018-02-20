@@ -111,7 +111,7 @@ netflixChow.movieSelection = () => {
 
 //display sorted data
 netflixChow.displayMovies = (movieData) => {
-    console.log(movieData);
+    // console.log(movieData);
 
     for(let i = 0; i < movieData.length; i = i + 1) {
 
@@ -315,7 +315,7 @@ netflixChow.smoothScroll = () => {
     //     }, 700);
     // })
 
-    
+
     $(".movie-button").on("click", function () {
         $("html").animate({
             scrollTop: $(".movies").offset().top
@@ -340,19 +340,7 @@ netflixChow.flickityGenre = function () {
         pageDots: false,
         wrapAround: true
     });
-    // $("movie-results").flickity({
-    //     cellAlign: 'left',
-    //     contain: true,
-    //     pageDots: false,
-    //     wrapAround: true
-    // });
-    // $("recipe-results").flickity({
-    //     cellAlign: 'left',
-    //     contain: true,
-    //     pageDots: false,
-    //     wrapAround: true
-    // });
-    console.log("true");
+
 }
 
 netflixChow.flickityMovie = function () {
@@ -362,7 +350,7 @@ netflixChow.flickityMovie = function () {
         pageDots: false,
         wrapAround: true
     });
-    console.log("movies good");
+    
 }
 
 netflixChow.flickityRecipe = function () {
@@ -371,12 +359,12 @@ netflixChow.flickityRecipe = function () {
         pageDots: false,
         wrapAround: true
     });
-    console.log("recipe good");
+   
 }
 
 netflixChow.readMore = function () {
     $('.readMore').on('click', function () {
-        console.log('click');
+        // console.log('click');
         $('.movieOverlay').toggleClass('expand');
     });
 }
