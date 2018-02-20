@@ -1,3 +1,7 @@
+#mainScreen{
+    margin-top: 20px;
+}
+
 
 ul{
     // margin: 0 auto;
@@ -19,6 +23,13 @@ ul{
             color: white;
             border: 1px solid white;
             }
+            &:active{
+            color: white;
+            border: 1px solid white;
+            }
+            input:checked {
+               border: 1px solid white;
+            }
         }
     }
 }
@@ -29,10 +40,60 @@ ul{
 .movie-card{
     width: 100%;
     img{
-        // width: 90%;
-        height: 70vh;
+        width: 90%;
         margin: 0 auto;
         display: block;
+        border-radius: 20px;
+    }
+    .movieOverlay{
+        width: 90%;
+        position: absolute;
+        padding:10px;
+        margin: 0 auto;
+        bottom: 55px;
+        right: 0;
+        left: 0;
+        background: rgba(255, 255, 255, 0.6);
+        color: black;
+        visibility: hidden;
+        opacity: 0;
+        transition: all 0.3s; 
+        border-radius: 0 0 20px 20px;
+    }
+}
+
+
+.movie-card{
+    .expand{
+        visibility: visible;
+        opacity: 1;
+    }
+
+}
+
+.readMore{
+    padding: 20px 10px;
+    p{
+        margin: 0;
+        width: auto;
+        margin: 0;
+        float: left;
+        padding: 0 10px 0 30px;
+    }
+
+    svg{
+        float:left;
+    }
+}
+
+
+.movie-overlay{
+     h3{
+        padding: 0 10px;
+        margin: 5px 0;
+    }
+    p{
+        padding: 0 10px;
     }
 }
 
@@ -40,21 +101,66 @@ ul{
 
 
 .recipe-card{
-    width: 40%;
-    img{
-        width: 100%;
+    width: 100%;
+    padding: 0px 20px;
+   img{
+        width: 90%;
         margin: 0 auto;
+        border-radius: 20px 20px 0 0;
     }
+}
+
+.link{
+    color: $accent;
+    text-decoration: none;
+    transition: all 0.5s;
+    display: block;
     
 }
 
+.recipe-label{
+    background-color: white;
+    margin: 0 auto;
+    padding: 30px 20px;
+    border-radius: 0px 0 20px 20px;
+    width: 90%;
+    p{
+        color: black;
+    }
+    h3{
+        margin: 0 0 10px 0;
+        color:$background;
+    }
+}
+
+.recipe-button{
+    margin: 0 auto;
+}
+
+.reset{
+    background: white;
+    margin: 20px auto;
+    position: relative;
+    bottom: -45px;
+    color: black;
+}
+
+
+// footer
 
 footer{
-    padding: 20px 80px 20px 0;
     background: $accent;
-    margin: 0;
-    color: white;
+    color: #fff9;
     margin-top: 30px;
-    text-align: right;
+    text-align: center;
+    padding: 60px 0 20px 0;
+   
+    div{
+        p{
+            margin: 0;
+            font-size: 0.8rem;
+        }
+    }
 }
+
 

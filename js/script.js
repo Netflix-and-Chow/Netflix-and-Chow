@@ -117,14 +117,21 @@ netflixChow.displayMovies = (movieData) => {
 
         $(".movie-results").append(`
                 <div class="movie-card">
-                <img src="https://image.tmdb.org/t/p/w500${movieData[i].poster_path}">
-                <h3>${movieData[i].original_title}</h3>
-                <p>${movieData[i].overview}<p>
+                    <img src="https://image.tmdb.org/t/p/w500${movieData[i].poster_path}">
+                    <div class="movieOverlay">
+                        <h3>${movieData[i].original_title}</h3>
+                        <p class="description">${movieData[i].overview}<p>
+                    </div>
+                    <div class="readMore clearfix">
+                        <p>Read more</p>
+                        <i class="fas fa-plus-circle"></i>
+                    </div>
                 </div>
         `);
     }
     $(".movie-results").flickity("destroy");
     netflixChow.flickityMovie();
+    netflixChow.readMore();
 }
 
 
@@ -274,8 +281,13 @@ netflixChow.displayRecipes = (recipeName, recipeUrl, recipeImage, recipeIngredie
             $('.recipe-results').append(`
             <div class ="recipe-card">
                 <img src="${recipeImage[i]}">
-                <h3>${recipeName[i]}</h3>
-                 <a class="link" href="${recipeUrl[i]}">See Full Recipe</a>
+                <div class="recipe-label">
+                    <h3>${recipeName[i]}</h3>
+                    <p><strong>Ingredients:</strong> ${recipeIngredientList[i]}</p>
+                    <a class="link" href="${recipeUrl[i]}">See Full Recipe
+                      <img src="./assets/spoon.png" alt="">
+                    </a>
+                </div>
             </div>`
             );
 
@@ -297,12 +309,13 @@ netflixChow.displayRecipes = (recipeName, recipeUrl, recipeImage, recipeIngredie
 
 netflixChow.smoothScroll = () => {
     //smooth scroll code for submit buttons
-    $("form input[type=radio]").on("click", function() {
-        $("html").animate({
-            scrollTop: $(".movie-button").offset().top
-        }, 700);
-    })
+    // $("form input[type=radio]").on("click", function() {
+    //     $("html").animate({
+    //         scrollTop: $(".movie-button").offset().top
+    //     }, 700);
+    // })
 
+    
     $(".movie-button").on("click", function () {
         $("html").animate({
             scrollTop: $(".movies").offset().top
@@ -311,7 +324,7 @@ netflixChow.smoothScroll = () => {
 
     $(".recipe-button").on("click", function () {
         $("html").animate({
-            scrollTop: $(".recipe-results").offset().top
+            scrollTop: $(".recipes").offset().top
         }, 1000);
     });
 
@@ -361,6 +374,12 @@ netflixChow.flickityRecipe = function () {
     console.log("recipe good");
 }
 
+netflixChow.readMore = function () {
+    $('.readMore').on('click', function () {
+        console.log('click');
+        $('.movieOverlay').toggleClass('expand');
+    });
+}
 
 
 //initialization function
@@ -368,6 +387,7 @@ netflixChow.init = () => {
     netflixChow.movieSelection();
     netflixChow.smoothScroll();
     netflixChow.flickityGenre();
+    
 }
 
 
