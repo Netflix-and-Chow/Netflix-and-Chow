@@ -375,6 +375,7 @@ netflixChow.init = () => {
     netflixChow.movieSelection();
     netflixChow.smoothScroll();
     netflixChow.flickityGenre();
+    // netflixChow.highlight();
     
 }
 
