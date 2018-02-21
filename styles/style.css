@@ -330,6 +330,12 @@ ul li label {
   bottom: -45px;
   color: black; }
 
+.movie-results, .recipe-results {
+  min-height: 600px; }
+
+main .flickity-viewport {
+  min-height: 600px; }
+
 footer {
   background: #B9090B;
   color: #fff9;

@@ -57,6 +57,11 @@ netflixChow.sortMovieData = (movieData) => {
 
 netflixChow.movieSelection = () => {
     
+    $("form label").on("click", function() {
+        $("form label").css("border", "");
+        $(this).css("border", "1px solid white");
+    });
+
     $("form").on("submit", function(e) {
         e.preventDefault();
         let userInputMovie = $("input[type=radio]:checked").val();
@@ -173,8 +178,8 @@ netflixChow.movieFood = (genreID) => {
 //pulls API data from Yummly based on the assigned Ingredient --> linked to movie genre IDs
 netflixChow.getId= (ingredient) => {
     $.ajax({
-        url: 'http://api.yummly.com/v1/api/recipes',
-        dataType: 'json',
+        url: 'https://api.yummly.com/v1/api/recipes',
+        dataType: 'jsonp',
         method: 'GET',
         data: {
             _app_id: "3a0b16d3",
@@ -229,8 +234,8 @@ netflixChow.getId= (ingredient) => {
 
 netflixChow.getRec = (recId) => {
     return $.ajax({
-        url: `http://api.yummly.com/v1/api/recipe/${recId}`,
-        dataType: 'json',
+        url: `https://api.yummly.com/v1/api/recipe/${recId}`,
+        dataType: 'jsonp',
         method: 'GET',
         data: {
             _app_id: "3a0b16d3",
@@ -293,6 +298,16 @@ netflixChow.displayRecipes = (recipeName, recipeUrl, recipeImage, recipeIngredie
 
             // for (let j = 0; j < recipeIngredientList[i].length; j = j + 1) {
 
+
+            //     //only append if the ingredients are unique
+            //     if(recipeIngredientList[i][j] !== recipeIngredientList[i][j-1]) {
+            //         $(".recipe-results").append(`
+            //            <p>${recipeIngredientList[i][j]}</p>
+            //            `);
+            //     }
+            // }
+
+
             //     //only append if the ingredients are unique
             //     if(recipeIngredientList[i][j] !== recipeIngredientList[i][j-1]) {
             //         $(".recipe-results").append(`
@@ -330,6 +345,7 @@ netflixChow.smoothScroll = () => {
 
     $(".reset").on("click", function() {
         $("html").animate({ scrollTop: 0 }, "slow");
+        // window.location.reload(true);
     });
 }
 
