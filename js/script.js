@@ -58,8 +58,8 @@ netflixChow.sortMovieData = (movieData) => {
 netflixChow.movieSelection = () => {
     
     $("form label").on("click", function() {
-        $("form label").css("border", "");
-        $(this).css("border", "1px solid white");
+        $("form label").css("border-bottom", "");
+        $(this).css("border-bottom", "5px solid #B9090B");
     });
 
     $("form").on("submit", function(e) {
