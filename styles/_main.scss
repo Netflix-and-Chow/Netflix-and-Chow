@@ -10,25 +10,25 @@ ul{
             display: none;
         }
         label{
-            border: 1px solid $accent;
+            border-bottom: 1px solid #333;
             padding: 20px 30px;
             color: $accent;
             display: inline-block;
             transition: all 0.5s;
             &:hover{
             color: white;
-            border: 1px solid white;
+            border-bottom: 5px solid $accent;
             }
             &:active{
             color: white;
-            border: 1px solid white;
+            border: 1px solid $accent;
             }
             &:active{
             color: white;
-            border: 1px solid white;
+            border: 1px solid $accent;
             }
             input[type="radio"]:checked label {
-               border: 1px solid white;
+               border: 1px solid $accent;
             }
         }
     }
@@ -43,7 +43,7 @@ ul{
         width: 90%;
         margin: 0 auto;
         display: block;
-        border-radius: 20px;
+        border-radius: 10px;
     }
     .movieOverlay{
         width: 90%;
@@ -58,7 +58,7 @@ ul{
         visibility: hidden;
         opacity: 0;
         transition: all 0.3s; 
-        border-radius: 0 0 20px 20px;
+        border-radius: 0 0 10px 10px;
     }
 }
 
@@ -105,7 +105,7 @@ ul{
    img{
         width: 90%;
         margin: 0 auto;
-        border-radius: 20px 20px 0 0;
+        border-radius: 10px 10px 0 0;
     }
 }
 
@@ -121,7 +121,7 @@ ul{
     background-color: white;
     margin: 0 auto;
     padding: 30px 20px;
-    border-radius: 0px 0 20px 20px;
+    border-radius: 0px 0 10px 10px;
     width: 90%;
     p{
         color: black;
@@ -137,11 +137,12 @@ ul{
 }
 
 .reset{
-    background: white;
+    background: black;
     margin: 20px auto;
     position: relative;
     bottom: -45px;
-    color: black;
+    color: $accent;
+
 }
 
 .movie-results, .recipe-results {
